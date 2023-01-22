@@ -1,0 +1,143 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Api Example - OpenAPI 3.0",
+        "description": "Micro framework http rest service example.",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://github.com/rosario-fiorella/micro-framework-http/blob/master/LICENSE"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http:/localhost:8080/App"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Rest/Product",
+            "description": "Tag for product Api example."
+        },
+        {
+            "name": "Vue/Product",
+            "description": "Tag for product web page example."
+        }
+    ],
+    "paths": {
+        "/rest/{productId}": {
+            "get": {
+                "tags": [
+                    "Rest/Product"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "ID of Product to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Product not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/vue/{productId}": {
+            "get": {
+                "tags": [
+                    "Vue/Product"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "ID of Product to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Product not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Product": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 10
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
