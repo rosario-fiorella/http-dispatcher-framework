@@ -66,3 +66,4 @@ Usage example MVC page with VUE.js
 
 http://{{host}}/App/vue/123
 
+![webpage-example](https://user-images.githubusercontent.com/41728059/213929619-e78c167c-5ebe-4808-9945-7144253d3c39.png)
