@@ -4,21 +4,7 @@ Http Rest service micro framework
 # Architecture
 This framework uses filters and interceptors, it can render Mvc Page and Rest Api Service
 
-```
----- Client Request
-    ----> Run Filter Chain 
-          ----> Dispatcher, 
-                ----> Handler Mapping and resolve ControllerName
-                ----> Handler interceptor start
-
-                      ----> Execute controller
-                      <---- Retrieve Model and View
-
-                <---- Handler interceptor stop
-          <---- View Resolver
-    <---- Request / Response Filter Chain
----- Response, Rendering View
-```
+![uml](https://user-images.githubusercontent.com/41728059/218578195-33b6feff-886c-46e0-9db2-c65cc199333b.png)
 
 example usage:
 - define openapi routing in 'App/routing.json'
