@@ -29,6 +29,6 @@ class Negotiation
     public function __construct()
     {
         $this->header = new Header;
-        $this->body = new body;
+        $this->body = new Body;
     }
 }
