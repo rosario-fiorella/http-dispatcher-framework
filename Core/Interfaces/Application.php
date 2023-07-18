@@ -41,9 +41,9 @@ interface Application
 
     /**
      * @since 1.0.0
-     * @return void
+     * @return string
      */
-    public function render(): void;
+    public function render(): string;
 
     /**
      * @since 1.0.0

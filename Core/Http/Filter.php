@@ -56,7 +56,7 @@ class Filter
     public function init(Request $request, Response $response): void
     {
         foreach ($this->filter as $filterInstance) {
-            ObjectFactory::callObjectMethod($filterInstance, __FUNCTION__, $request, $response, $this->negotiation);
+            ObjectFactory::callObjectMethod($filterInstance, __FUNCTION__, [$request, $response, $this->negotiation]);
         }
     }
 
@@ -69,7 +69,7 @@ class Filter
     public function destroy(Request $request, Response $response): void
     {
         foreach ($this->filter as $filterInstance) {
-            ObjectFactory::callObjectMethod($filterInstance, __FUNCTION__, $request, $response, $this->negotiation);
+            ObjectFactory::callObjectMethod($filterInstance, __FUNCTION__, [$request, $response, $this->negotiation]);
         }
     }
 }

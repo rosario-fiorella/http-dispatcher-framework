@@ -19,21 +19,26 @@ class Task extends LifeCycle
         $this->registry();
         $this->instance();
         $this->init();
+        $this->startup();
+        $this->shutdown();
     }
 
     /**
      * @since 1.0.0
+     * @access protected
      * @return void
      */
-    public function startup(): void
+    protected function startup(): void
     {
         $this->service(new Request, new Response);
     }
 
     /**
      * @since 1.0.0
+     * @access protected
+     * @return void
      */
-    public function __destruct()
+    protected function shutdown(): void
     {
         $this->destroy();
         $this->finalize();

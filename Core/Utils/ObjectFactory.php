@@ -4,29 +4,42 @@ declare(strict_types=1);
 
 namespace Core\Utils;
 
-use \LogicException;
+use function \_;
+use \BadMethodCallException;
 use \ReflectionClass;
 use \ReflectionMethod;
+use \RuntimeException;
 
 class ObjectFactory
 {
     /**
      * @since 1.0.0
      * @final
+     * @static
      * @param string $namespace
-     * @param mixed ...$args
-     * @return object
+     * @param array $args
+     * @return object|null
+     * @throws RuntimeException
      */
-    final public static function getObjectInstance(string $namespace, mixed ...$args): mixed
+    final public static function getObjectInstance(string $namespace, array $args = []): ?object
     {
         $reflectionClass = new ReflectionClass($namespace);
+
+        if (!$reflectionClass->isInstantiable()) {
+            throw new RuntimeException(_('error.object.notInstantiable'));
+        }
+
         if (!$reflectionClass->hasMethod('__construct')) {
             return $reflectionClass->newInstanceWithoutConstructor();
         }
 
-        $reflectionMethod = new ReflectionMethod($reflectionClass->getName(), '__construct');
+        $reflectionMethod = new ReflectionMethod($namespace, '__construct');
+        if (!$reflectionMethod->isPublic()) {
+            return $reflectionClass->newInstanceWithoutConstructor();
+        }
+
         if ($reflectionMethod->getParameters()) {
-            return $reflectionClass->newInstance(...$args);
+            return $reflectionClass->newInstanceArgs($args);
         }
 
         return $reflectionClass->newInstance();
@@ -35,22 +48,28 @@ class ObjectFactory
     /**
      * @since 1.0.0
      * @final
-     * @param mixed $class
+     * @static
+     * @param object|string $class
      * @param string $method
-     * @param mixed ...$args
+     * @param array $args
      * @return mixed
-     * @throws LogicException
+     * @throws BadMethodCallException
      */
-    final public static function callObjectMethod(mixed $class, string $method, mixed ...$args): mixed
+    final public static function callObjectMethod(object|string $class, string $method, array $args = []): mixed
     {
         $reflectionClass = new ReflectionClass($class);
 
         if (!$reflectionClass->hasMethod($method)) {
-            throw new LogicException('error.call.object_method');
+            throw new BadMethodCallException(_('error.object.method.notFound'));
+        }
+
+        $reflectionMethod = new ReflectionMethod($class, $method);
+        if (!$reflectionMethod->isPublic()) {
+            throw new BadMethodCallException(_('error.object.method.notPublic'));
         }
 
         if ($reflectionClass->getMethod($method)->isStatic()) {
-            return call_user_func([$class, $method], ...$args);
+            return call_user_func_array([$class, $method], $args);
         }
 
         if (is_string($class)) {
@@ -61,6 +80,6 @@ class ObjectFactory
             $instance = $class;
         }
 
-        return call_user_func([$instance, $method], ...$args);
+        return call_user_func_array([$instance, $method], $args);
     }
 }

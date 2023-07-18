@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2023-07-17 23:30+0200\n"
+"PO-Revision-Date: 2023-07-17 23:30+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: Http/Controller.php:107
+msgid "error.doHandle.UnexpectedValue"
+msgstr "errore: metodo della richiesta non permesso"
+
+#: Http/Router.php:47
+msgid "error.regex.matching"
+msgstr "errore: corrispondenza non valida"
+
+#: Http/View.php:84
+msgid "error.path.notFound"
+msgstr "errore: richiesta non permessa"
+
+#: Utils/ObjectFactory.php:29
+msgid "error.object.notInstantiable"
+msgstr "errore: istanza non permessa"
+
+#: Utils/ObjectFactory.php:63
+msgid "error.object.method.notFound"
+msgstr "errore: metodo non implementato"
+
+#: Utils/ObjectFactory.php:68
+msgid "error.object.method.notPublic"
+msgstr "errore: metodo non pubblico"
+
+#: Utils/StaticRegistryTrait.php:34
+msgid "error.array.key.notFound"
+msgstr "errore: chiave non trovata"
+
+#: Utils/URIFilter.php:27
+msgid "error.validation.format.notUri"
+msgstr "errore: uri non valido"

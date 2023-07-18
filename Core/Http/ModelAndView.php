@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
+use \JsonException;
+
 class ModelAndView
 {
     /**
@@ -18,6 +20,30 @@ class ModelAndView
      * @var null|object $modelData
      */
     protected ?object $modelData = null;
+
+    /**
+     * @since 1.0.0
+     * @param string $viewName
+     * @param string $json
+     */
+    public function __construct(string $viewName = '', string $json = '')
+    {
+        if ($viewName) {
+            $this->setViewName($viewName);
+        }
+
+        if (!$json) {
+            return;
+        }
+
+        $obj = json_decode($json) ?: null;
+
+        if (json_last_error()) {
+            throw new JsonException(json_last_error_msg(), json_last_error());
+        }
+
+        $this->setModel($obj);
+    }
 
     /**
      * @since 1.0.0

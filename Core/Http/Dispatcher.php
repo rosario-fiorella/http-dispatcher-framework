@@ -69,8 +69,6 @@ class Dispatcher implements DispatcherInterface
      */
     public function destroy(): void
     {
-        $this->application->render();
-
         $this->application->destroy();
     }
 }

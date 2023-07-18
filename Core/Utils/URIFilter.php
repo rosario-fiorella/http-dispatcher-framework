@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Utils;
 
+use function \_;
 use InvalidArgumentException;
 
 class URIFilter
@@ -23,7 +24,7 @@ class URIFilter
     public function __construct(string $uri)
     {
         if (filter_var($uri, FILTER_VALIDATE_URL) && !preg_match('/[^\w.-]/', $uri)) {
-            throw new InvalidArgumentException('error.uri');
+            throw new InvalidArgumentException(_('error.validation.format.notUri'));
         }
 
         $this->uri = $uri;

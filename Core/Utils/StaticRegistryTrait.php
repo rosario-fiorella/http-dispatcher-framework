@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Core\Utils;
 
+use function \_;
 use \Traversable;
 use \ArrayIterator;
+use \InvalidArgumentException;
 
 trait StaticRegistryTrait
 {
@@ -20,15 +22,16 @@ trait StaticRegistryTrait
     /**
      * @since 1.0.0
      * @param string $key
-     * @return string|null
+     * @return string
+     * @throws InvalidArgumentException
      */
-    public function get(string $key): ?string
+    public function get(string $key): string
     {
         if ($this->isset($key)) {
             return (static::$map)[$key];
         }
 
-        return null;
+        throw new InvalidArgumentException(_('error.array.key.notFound'));
     }
 
     /**

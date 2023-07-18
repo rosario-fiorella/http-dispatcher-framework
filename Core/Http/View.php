@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
+use function \_;
 use \Core\Utils\ObjectSerializable;
 use \InvalidArgumentException;
 
@@ -80,7 +81,7 @@ class View
             return;
         }
 
-        throw new InvalidArgumentException('error.path.notFound');
+        throw new InvalidArgumentException(_('error.path.notFound'));
     }
 
     /**
@@ -115,11 +116,7 @@ class View
     {
         ob_start();
 
-        $output = '';
-
-        if ($this->template) {
-            $output = $this->template->jsonSerialize();
-        }
+        $output = $this->template->jsonSerialize();
 
         $this->setVars($output);
 

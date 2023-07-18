@@ -57,7 +57,7 @@ class Interceptor
     public function preHandle(Request $request, Response $response, string $handler): void
     {
         foreach ($this->interceptor as $interceptorInstance) {
-            ObjectFactory::callObjectMethod($interceptorInstance, __METHOD__, $request, $response, $handler, $this->negotiation);
+            ObjectFactory::callObjectMethod($interceptorInstance, __FUNCTION__, [$request, $response, $handler, $this->negotiation]);
         }
     }
 
@@ -72,7 +72,7 @@ class Interceptor
     public function postHandle(Request $request, Response $response, Controller $handler, ModelAndView $modelAndView): void
     {
         foreach ($this->interceptor as $interceptorInstance) {
-            ObjectFactory::callObjectMethod($interceptorInstance, __METHOD__, $request, $response, $handler, $modelAndView, $this->negotiation);
+            ObjectFactory::callObjectMethod($interceptorInstance, __FUNCTION__, [$request, $response, $handler, $modelAndView, $this->negotiation]);
         }
     }
 }

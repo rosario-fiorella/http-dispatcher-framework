@@ -22,46 +22,25 @@ class ObjectStorage
 
     /**
      * @since 1.0.0
-     * @access protected
-     * @var Configurer $configurer
-     */
-    protected Configurer $configurer;
-
-    /**
-     * @since 1.0.0
-     * @access protected
-     * @var Loader $loader
-     */
-    protected Loader $loader;
-
-    /**
-     * @since 1.0.0
-     * @access protected
-     * @var Registry $registry
-     */
-    protected Registry $registry;
-
-    /**
-     * @since 1.0.0
      * @param Registry $registry
      * @param Loader $loader
      * @param Configurer $configurer
      */
-    public function __construct(Registry $registry, Loader $loader, Configurer $configurer)
-    {
-        $this->registry = $registry;
-        $this->loader = $loader;
-        $this->configurer = $configurer;
+    public function __construct(
+        protected Registry $registry,
+        protected Loader $loader,
+        protected Configurer $configurer
+    ) {
     }
 
     /**
      * @since 1.0.0
      * @final
      * @param string $namespace
-     * @param mixed ...$args
+     * @param array $args
      * @return object
      */
-    final public static function getObjectInstance(string $namespace, mixed ...$args): object
+    final public static function getObjectInstance(string $namespace, array $args = []): object
     {
         if (array_key_exists($namespace, static::$cache)) {
             return (static::$cache)[$namespace];
@@ -76,24 +55,16 @@ class ObjectStorage
 
     /**
      * @since 1.0.0
-     * @param mixed ...$arg
+     * @param array $args
      * @return Application
      * @throws UnexpectedValueException
      * @throws LogicException
      */
-    public function instanceApplication(...$arg): Application
+    public function instanceApplication(array $args = []): Application
     {
         $namespace = $this->registry->get('application');
 
-        if (!$namespace) {
-            throw new UnexpectedValueException('error.value');
-        }
-
-        if (!class_exists($namespace)) {
-            throw new LogicException('error.value');
-        }
-
-        $application = $this->getObjectInstance($namespace, ...$arg);
+        $application = $this->getObjectInstance($namespace, $args);
 
         return $this->configurer->configureApplication($application);
     }

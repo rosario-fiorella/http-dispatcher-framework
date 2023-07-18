@@ -20,7 +20,7 @@ class Initializer
     {
         $locator = new ObjectStorage($context->getRegistry(), $context->getLoader(), $configurer);
 
-        $application = $locator->instanceApplication($context);
+        $application = $locator->instanceApplication([$context]);
 
         $dispatcher = $configurer->configureDispatcher(new Dispatcher($application));
 

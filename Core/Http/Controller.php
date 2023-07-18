@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
+use function \_;
 use \UnexpectedValueException;
 
 abstract class Controller
@@ -103,6 +104,6 @@ abstract class Controller
             return $this->doTrace($request, $response);
         }
 
-        throw new UnexpectedValueException('error.doHandle.UnexpectedValue');
+        throw new UnexpectedValueException(_('error.doHandle.UnexpectedValue'));
     }
 }

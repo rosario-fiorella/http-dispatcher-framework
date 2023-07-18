@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
+use function \_;
 use \Core\Utils\URIFilter;
 use \UnexpectedValueException;
 
@@ -43,6 +44,6 @@ class Router
             }
         }
 
-        throw new UnexpectedValueException('error.regex.match');
+        throw new UnexpectedValueException(_('error.regex.matching'));
     }
 }
