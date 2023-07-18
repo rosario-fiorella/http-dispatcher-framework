@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Core\Boot;
 
 use \Core\Context;
-use \Core\Http\Dispatcher;
+use \Core\Http\Interfaces\Dispatcher;
 use \Core\Http\Filter;
 use \Core\Http\Interceptor;
 use \Core\Http\Negotiation;
@@ -82,11 +82,11 @@ class Configurer
     /**
      * @since 1.0.0
      * @param Context $context
-     * @param Application $application
      * @param Router $router
+     * @param Application|null $application
      * @return void
      */
-    public function configureOnInit(Context $context, Application $application, Router $router): void
+    public function configureOnInit(Context $context, Router $router, ?Application $application = null): void
     {
         $negotiation = $this->configureNegotation(new Negotiation);
 
@@ -97,7 +97,10 @@ class Configurer
         $context->addInterceptor($interceptor);
         $context->addNegotiation($negotiation);
         $context->addRouter($router);
-        $context->addApplication($application);
+
+        if ($application) {
+            $context->addApplication($application);
+        }
     }
 
     /**

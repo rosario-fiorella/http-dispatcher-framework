@@ -6,9 +6,9 @@ namespace Core;
 
 use \core\Boot\Loader;
 use \core\Boot\Registry;
-use \Core\Http\Dispatcher;
 use \Core\Http\Filter;
 use \Core\Http\Interceptor;
+use \Core\Http\Interfaces\Dispatcher;
 use \Core\Http\Negotiation;
 use \Core\Http\Response;
 use \Core\Http\Request;

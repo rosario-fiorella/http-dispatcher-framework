@@ -27,6 +27,6 @@ class Initializer
         $router = $configurer->configureRouter(new Router);
         $router->addDispatcher('/(.+)/', $dispatcher);
 
-        $configurer->configureOnInit($context, $application, $router);
+        $configurer->configureOnInit($context, $router, $application);
     }
 }
