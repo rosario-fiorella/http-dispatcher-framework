@@ -1,4 +1,4 @@
-# micro-framework-http
+# Http Dispatcher Framework
 
 ## About
 > **!IMPORTANT:** this is an experimental version not to be used for production development
@@ -43,12 +43,12 @@ case study: [dispatcher as proxy using application](https://github.com/rosario-f
 ## Security Vulnerabilities
 For better security setup, add the following http response headers [more info](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) edit **.htaccess** if using **Apache** or **default.config** on **Nginx**, or use [```\Core\Http\Response::setHeader```](/Core/Http/Response.php) method in your controller
 
-- ```X-Frame-Options: SAMEORIGIN```;
-- ```X-XSS-Protection: "1; mode=block"```;
-- ```X-Content-Type-Options: nosniff```;
-- ```Referrer-Policy: strict-origin-when-cross-origin```;
+- ```X-Frame-Options: SAMEORIGIN```
+- ```X-XSS-Protection: "1; mode=block"```
+- ```X-Content-Type-Options: nosniff```
+- ```Referrer-Policy: strict-origin-when-cross-origin```
 
-Debugging enabled local development only
+Debugging enabled **local development only**
 
 Hide sensitive information in http requests/response
 
