@@ -1,7 +1,7 @@
 # micro-framework-http
 
 ## About
-> !IMPORTANT: this is an experimental version not to be used for production development
+> **!IMPORTANT:** this is an experimental version not to be used for production development
 
 This http-based framework implements the [Dispatcher pattern (more info from Oracle Java)](https://www.oracle.com/java/technologies/front-controller.html) and can be configured as a front-controller or delegate the request to an application. Suitable for REST API services or monolithic server-side rendering.
 
