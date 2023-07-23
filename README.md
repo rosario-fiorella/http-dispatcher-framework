@@ -8,8 +8,9 @@ This http-based framework implements the [Dispatcher pattern (more info from Ora
 ## Framework features
 - Filters, register custom Http Filter
 - Interceptors, register custom http interceptors
+- Negotiation, validate request content
 - Localization, use [POEDIT](https://poedit.net/) to translate strings or add new languages. (Note: required enable php extensions ```gettext```, ```intl```, ```mbstring``` [more info](#requirements))
-- Powerful configuration, registering a custom application to handle specific endpoint requests or simply using front-controllers (best for api)
+- Powerful configuration using D.I., registering a custom application to handle specific endpoint requests or simply using front-controllers (best for api)
 - DI - dependency injection
 - Service Locator [see \Core\Utils\ObjectStorage](/Core/Utils/ObjectStorage.php)
 - Singleton only used for [see \Core\Boot\Registry](/Core/Boot/Registry.php), no other class uses singleton
