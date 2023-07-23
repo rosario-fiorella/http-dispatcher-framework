@@ -6,7 +6,7 @@ namespace Core\Http;
 
 use \Core\Http\Interfaces\Interceptor as InterceptorInterface;
 use \Core\Http\Negotiation;
-use \core\Utils\ObjectFactory;
+use \Core\Utils\ObjectFactory;
 use \SplObjectStorage;
 
 class Interceptor

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Core;
 
-use \core\Boot\Loader;
-use \core\Boot\Registry;
+use \Core\Boot\Loader;
+use \Core\Boot\Registry;
 use \Core\Http\Filter;
 use \Core\Http\Interceptor;
 use \Core\Http\Interfaces\Dispatcher;

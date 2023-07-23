@@ -6,7 +6,7 @@ namespace Core\Http;
 
 use \Core\Http\Interfaces\Filter as FilterInterface;
 use \Core\Http\Negotiation;
-use \core\Utils\ObjectFactory;
+use \Core\Utils\ObjectFactory;
 use \SplObjectStorage;
 
 class Filter
