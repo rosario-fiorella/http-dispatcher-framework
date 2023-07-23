@@ -32,7 +32,7 @@ Enabled PHP extensions
 ## Learning - Case Study
 
 ### Dispatcher lifecycle management 
-![workflow](https://github.com/rosario-fiorella/micro-framework-http/assets/41728059/6c3b82f6-5195-4b77-afda-d1e49b8afcca)
+![workflow](https://github.com/rosario-fiorella/http-dispatcher-framework/assets/41728059/8b72715c-5bc6-41ed-b7c8-861bb2210021)
 
 ### Example 1: Dispatcher as Front-Controller
 case study: [dispatcher as front controller without proxy application](https://github.com/rosario-fiorella/micro-framework-http/blob/feature/front-controller/01-example-dispatcher-as-front-controller/index.php)
