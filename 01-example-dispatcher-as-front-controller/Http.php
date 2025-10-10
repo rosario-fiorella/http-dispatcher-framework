@@ -9,7 +9,6 @@ use \Core\Task;
 
 class Http extends Task
 {
-    #[Override]
     protected function init(): void
     {
         $initializer = new Initializer($this->context, $this->configurer);

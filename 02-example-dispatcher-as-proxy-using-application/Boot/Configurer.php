@@ -12,7 +12,6 @@ use \Core\Http\Interceptor as InterceptorManager;
 
 class Configurer extends __Configurer
 {
-    #[Override]
     public function configureFilter(FilterManager $filter): FilterManager
     {
         $filter->add(new GenericFilter);
@@ -20,7 +19,6 @@ class Configurer extends __Configurer
         return $filter;
     }
 
-    #[Override]
     public function configureInterceptor(InterceptorManager $interceptor): InterceptorManager
     {
         $interceptor->add(new GenericInterceptor);

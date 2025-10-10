@@ -10,7 +10,6 @@ use \Core\Task;
 
 class Http extends Task
 {
-    #[Override]
     protected function registry(): void
     {
         parent::registry();
@@ -18,7 +17,6 @@ class Http extends Task
         $this->registry->set('application', ProxyApplication::class);
     }
 
-    #[Override]
     protected function instance(): void
     {
         parent::instance();

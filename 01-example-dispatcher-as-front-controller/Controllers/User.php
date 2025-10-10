@@ -17,18 +17,15 @@ class User extends Controller implements DispatcherInterface
     protected ModelAndView $modelAndView;
     protected View $view;
 
-    #[Override]
     public function init(): void
     {
     }
 
-    #[Override]
     protected function doDelete(Request $request, Response $response): ModelAndView
     {
         throw new RuntimeException(_('error.method.not_implemented'));
     }
 
-    #[Override]
     protected function doGet(Request $request, Response $response): ModelAndView
     {
         $user = [
@@ -44,37 +41,31 @@ class User extends Controller implements DispatcherInterface
         exit;
     }
 
-    #[Override]
     protected function doHead(Request $request, Response $response): ModelAndView
     {
         throw new RuntimeException(_('error.method.not_implemented'));
     }
 
-    #[Override]
     protected function doOptions(Request $request, Response $response): ModelAndView
     {
         throw new RuntimeException(_('error.method.not_implemented'));
     }
 
-    #[Override]
     protected function doPost(Request $request, Response $response): ModelAndView
     {
         throw new RuntimeException(_('error.method.not_implemented'));
     }
 
-    #[Override]
     protected function doPut(Request $request, Response $response): ModelAndView
     {
         throw new RuntimeException(_('error.method.not_implemented'));
     }
 
-    #[Override]
     protected function doTrace(Request $request, Response $response): ModelAndView
     {
         throw new RuntimeException(_('error.method.not_implemented'));
     }
 
-    #[Override]
     public function service(Request $request, Response $response): void
     {
         $this->modelAndView = $this->doHandle($request, $response);
@@ -91,7 +82,6 @@ class User extends Controller implements DispatcherInterface
         return $this->view->render();
     }
 
-    #[Override]
     public function destroy(): void
     {
     }

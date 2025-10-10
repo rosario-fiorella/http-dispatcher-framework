@@ -13,12 +13,10 @@ use \Core\Http\Response;
 
 class Generic implements InterceptorInterface
 {
-    #[Override]
     public function preHandle(Request $request, Response $response, string $handler, Negotiation $negotiation): void
     {
     }
 
-    #[Override]
     public function postHandle(Request $request, Response $response, Controller $handler, ModelAndView $modelAndView, Negotiation $negotiation): void
     {
     }

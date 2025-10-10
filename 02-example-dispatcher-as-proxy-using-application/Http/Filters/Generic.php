@@ -12,7 +12,6 @@ use UnexpectedValueException;
 
 class Generic implements FilterInterface
 {
-    #[Override]
     public function init(Request $request, Response $response, Negotiation $negotation): void
     {
         if ($request->getHeader('HTTP_CONNECTION')) {
@@ -22,7 +21,6 @@ class Generic implements FilterInterface
         throw new UnexpectedValueException(_('error.request.notAllowed'), 403);
     }
 
-    #[Override]
     public function destroy(Request $request, Response $response, Negotiation $negotation): void
     {
     }

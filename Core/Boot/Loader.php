@@ -10,9 +10,9 @@ class Loader
 {
     public function __construct()
     {
-        $this->setErrorHandler();
+        $this->registerErrorHandler();
 
-        $this->shutdownFunction();
+        $this->registerShutdownFunction();
     }
 
     /**
@@ -20,7 +20,7 @@ class Loader
      * @access protected
      * @return void
      */
-    protected function setErrorHandler(): void
+    protected function registerErrorHandler(): void
     {
         set_error_handler(
             /**
@@ -47,7 +47,7 @@ class Loader
      * @access protected
      * @return void
      */
-    protected function shutdownFunction(): void
+    protected function registerShutdownFunction(): void
     {
         register_shutdown_function(
             /**
