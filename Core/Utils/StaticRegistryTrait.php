@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Core\Utils;
 
-use function \_;
-use \Traversable;
-use \ArrayIterator;
-use \InvalidArgumentException;
+use function _;
+
+use ArrayIterator;
+use InvalidArgumentException;
 
 trait StaticRegistryTrait
 {
@@ -78,9 +78,9 @@ trait StaticRegistryTrait
 
     /**
      * @since 1.0.0
-     * @return Traversable
+     * @return ArrayIterator<string, string>
      */
-    public function getIterator(): Traversable
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator(static::$map);
     }

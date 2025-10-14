@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
-use \Core\Http\Interfaces\Filter as FilterInterface;
-use \Core\Http\Negotiation;
-use \Core\Utils\ObjectFactory;
-use \SplObjectStorage;
+use Core\Http\Interfaces\Filter as FilterInterface;
+use Core\Http\Negotiation;
+use Core\Utils\ObjectFactory;
+use SplObjectStorage;
 
 class Filter
 {
     /**
      * @since 1.0.0
      * @access protected
-     * @var SplObjectStorage $filter
+     * @var SplObjectStorage<FilterInterface, mixed|null> $filter
      */
     protected SplObjectStorage $filter;
 
@@ -31,7 +31,7 @@ class Filter
      */
     public function __construct(Negotiation $negotiation)
     {
-        $this->filter = new SplObjectStorage;
+        $this->filter = new SplObjectStorage();
 
         $this->negotiation = $negotiation;
     }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Utils;
 
-use \JsonException;
-use \JsonSerializable;
+use JsonException;
+use JsonSerializable;
 
 class ObjectSerializable implements JsonSerializable
 {
@@ -42,6 +42,6 @@ class ObjectSerializable implements JsonSerializable
             throw new JsonException(json_last_error_msg(), json_last_error());
         }
 
-        return $json;
+        return $json ?: '';
     }
 }

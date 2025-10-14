@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Core\Boot;
 
-use \Core\Context;
-use \Core\Http\Dispatcher;
-use \Core\Http\Router;
-use \Core\Utils\ObjectStorage;
+use Core\Context;
+use Core\Http\Dispatcher;
+use Core\Http\Router;
+use Core\Utils\ObjectStorage;
 
 class Initializer
 {
@@ -24,8 +24,8 @@ class Initializer
 
         $dispatcher = $configurer->configureDispatcher(new Dispatcher($application));
 
-        $router = $configurer->configureRouter(new Router);
-        $router->addDispatcher('/(.+)/', $dispatcher);
+        $router = $configurer->configureRouter(new Router());
+        $router->addDispatcher('/(.+)?/', $dispatcher);
 
         $configurer->configureOnInit($context, $router, $application);
     }

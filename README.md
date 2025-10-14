@@ -1,4 +1,4 @@
-# Http Dispatcher Framework
+# HTTP Dispatcher Framework
 
 ## About
 > **!IMPORTANT:** this is an experimental version not to be used for production development
@@ -36,13 +36,13 @@ Enabled PHP extensions
 ![workflow](https://github.com/rosario-fiorella/http-dispatcher-framework/assets/41728059/8b72715c-5bc6-41ed-b7c8-861bb2210021)
 
 ### Example 1: Dispatcher as Front-Controller
-case study: [dispatcher as front controller without proxy application](https://github.com/rosario-fiorella/micro-framework-http/blob/feature/front-controller/01-example-dispatcher-as-front-controller/index.php)
+case study: [dispatcher as front controller without proxy application](https://github.com/rosario-fiorella/http-dispatcher-framework/tree/master/01-example-dispatcher-as-front-controller)
 
 ### Example 2: Dispatcher as Proxy using Application
-case study: [dispatcher as proxy using application](https://github.com/rosario-fiorella/micro-framework-http/tree/feature/front-controller/02-example-dispatcher-as-proxy-using-application)
+case study: [dispatcher as proxy using application](https://github.com/rosario-fiorella/http-dispatcher-framework/tree/master/02-example-dispatcher-as-proxy-using-application)
 
 ## Security Vulnerabilities
-For better security setup, add the following http response headers [more info](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) edit **.htaccess** if using **Apache** or **default.config** on **Nginx**, or use [```\Core\Http\Response::setHeader```](/Core/Http/Response.php) method in your controller
+For better security setup, add the following http response headers [more info](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) edit **.htaccess** if using **Apache** or **default.config** on **Nginx**, or use [```Core\Http\Response::setHeader```](Core/Http/Response.php) method in your controller
 
 - ```X-Frame-Options: SAMEORIGIN```
 - ```X-XSS-Protection: "1; mode=block"```

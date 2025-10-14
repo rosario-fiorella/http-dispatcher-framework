@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Core\Boot;
 
-use \Core\Context;
-use \Core\Http\Interfaces\Dispatcher;
-use \Core\Http\Filter;
-use \Core\Http\Interceptor;
-use \Core\Http\Negotiation;
-use \Core\Http\Router;
-use \Core\Interfaces\Application;
+use Core\Context;
+use Core\Http\Interfaces\Dispatcher;
+use Core\Http\Filter;
+use Core\Http\Interceptor;
+use Core\Http\Negotiation;
+use Core\Http\Router;
+use Core\Interfaces\Application;
 
 class Configurer
 {
@@ -88,7 +88,7 @@ class Configurer
      */
     public function configureOnInit(Context $context, Router $router, ?Application $application = null): void
     {
-        $negotiation = $this->configureNegotation(new Negotiation);
+        $negotiation = $this->configureNegotation(new Negotiation());
 
         $filter = $this->configureFilter(new Filter($negotiation));
         $interceptor = $this->configureInterceptor(new Interceptor($negotiation));

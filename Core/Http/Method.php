@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
-use \Core\Utils\EnumTrait;
+use Core\Utils\EnumTrait;
 
 enum Method: string
 {

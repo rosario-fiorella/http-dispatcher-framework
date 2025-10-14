@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Core;
 
-use \Core\Boot\LifeCycle;
-use \Core\Http\Request;
-use \Core\Http\Response;
+use Core\Boot\LifeCycle;
+use Core\Http\Request;
+use Core\Http\Response;
 
 class Task extends LifeCycle
 {
@@ -30,7 +30,7 @@ class Task extends LifeCycle
      */
     protected function startup(): void
     {
-        $this->service(new Request, new Response);
+        $this->service(new Request(), new Response());
     }
 
     /**

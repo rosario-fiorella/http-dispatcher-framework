@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App;
 
-use \App\Boot\Initializer;
-use \Core\Task;
+use App\Boot\Initializer;
+use Core\Task;
 
 class Http extends Task
 {

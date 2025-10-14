@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Modules\Test\Controllers;
 
-use function \_;
-use \Core\Http\Controller;
-use \Core\Http\ModelAndView;
-use \Core\Http\Request;
-use \Core\Http\Response;
-use \RuntimeException;
+use function _;
+
+use Core\Http\Controller;
+use Core\Http\ModelAndView;
+use Core\Http\Request;
+use Core\Http\Response;
+use RuntimeException;
 
 class Index extends Controller
 {

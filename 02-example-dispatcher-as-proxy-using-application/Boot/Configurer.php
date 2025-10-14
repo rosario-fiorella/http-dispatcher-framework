@@ -4,24 +4,24 @@ declare(strict_types=1);
 
 namespace App\Boot;
 
-use \App\Http\Filters\Generic as GenericFilter;
-use \App\Http\Interceptors\Generic as GenericInterceptor;
-use \Core\Boot\Configurer as __Configurer;
-use \Core\Http\Filter as FilterManager;
-use \Core\Http\Interceptor as InterceptorManager;
+use App\Http\Filters\Generic as GenericFilter;
+use App\Http\Interceptors\Generic as GenericInterceptor;
+use Core\Boot\Configurer as __Configurer;
+use Core\Http\Filter as __Filter;
+use Core\Http\Interceptor as __Interceptor;
 
 class Configurer extends __Configurer
 {
-    public function configureFilter(FilterManager $filter): FilterManager
+    public function configureFilter(__Filter $filter): __Filter
     {
-        $filter->add(new GenericFilter);
+        $filter->add(new GenericFilter());
 
         return $filter;
     }
 
-    public function configureInterceptor(InterceptorManager $interceptor): InterceptorManager
+    public function configureInterceptor(__Interceptor $interceptor): __Interceptor
     {
-        $interceptor->add(new GenericInterceptor);
+        $interceptor->add(new GenericInterceptor());
 
         return $interceptor;
     }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App;
 
-use \App\Boot\Configurer as HttpConfigurer;
-use \App\Proxy\Application as ProxyApplication;
-use \Core\Task;
+use App\Boot\Configurer as HttpConfigurer;
+use App\Proxy\Application as ProxyApplication;
+use Core\Task;
 
 class Http extends Task
 {
@@ -21,6 +21,6 @@ class Http extends Task
     {
         parent::instance();
 
-        $this->configurer = new HttpConfigurer;
+        $this->configurer = new HttpConfigurer();
     }
 }

@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace App\Config;
 
-use \Core\Http\Request;
-use \Core\Utils\URIFilter;
-use \InvalidArgumentException;
-use \UnexpectedValueException;
+use Core\Http\Request;
+use Core\Utils\URIFilter;
+use InvalidArgumentException;
+use UnexpectedValueException;
 
 class Router
 {
+    /**
+     * @var array<string, string> $map
+     */
     protected array $map = [];
 
     public function addHandler(string $regex, string $namespace): void

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Boot;
 
-use \Core\Context;
+use Core\Context;
 
 class Finalizer
 {

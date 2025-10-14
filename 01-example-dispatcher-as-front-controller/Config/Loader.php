@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Config;
 
-use \InvalidArgumentException;
-use \LogicException;
+use InvalidArgumentException;
+use LogicException;
 
 class Loader
 {
@@ -31,7 +31,7 @@ class Loader
                 $className = str_replace("\\", DIRECTORY_SEPARATOR, $className);
                 $className = str_replace('App/', pathinfo(dirname(__DIR__), PATHINFO_BASENAME) . '/', $className);
 
-                $classPath = sprintf('%s/%s.php', dirname(getcwd()), $className);
+                $classPath = sprintf('%s/%s.php', dirname(getcwd() ?: ''), $className);
 
                 if (!file_exists($classPath)) {
                     throw new LogicException(_('error.file.notFound'));

@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
-use function \_;
-use \Core\Http\Interfaces\Dispatcher;
-use \Core\Utils\URIFilter;
-use \UnexpectedValueException;
+use function _;
+
+use Core\Http\Interfaces\Dispatcher;
+use Core\Utils\URIFilter;
+use UnexpectedValueException;
 
 class Router
 {

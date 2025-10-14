@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
-use \Core\Http\Interfaces\Http;
-use \ArrayObject;
+use Core\Http\Interfaces\Http;
+use ArrayObject;
 
 class Header extends ArrayObject implements Http
 {
@@ -16,7 +16,9 @@ class Header extends ArrayObject implements Http
     public function send(): void
     {
         foreach ($this->getIterator() as $k => $v) {
-            header(sprintf('%s: %s', $k, $v), true);
+            if ($v && is_string($v)) {
+                header(sprintf('%s: %s', $k, $v), true);
+            }
         }
     }
 }

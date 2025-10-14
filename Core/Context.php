@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Core;
 
-use \Core\Boot\Loader;
-use \Core\Boot\Registry;
-use \Core\Http\Filter;
-use \Core\Http\Interceptor;
-use \Core\Http\Interfaces\Dispatcher;
-use \Core\Http\Negotiation;
-use \Core\Http\Response;
-use \Core\Http\Request;
-use \Core\Http\Router;
-use \Core\Interfaces\Application;
+use Core\Boot\Loader;
+use Core\Boot\Registry;
+use Core\Http\Filter;
+use Core\Http\Interceptor;
+use Core\Http\Interfaces\Dispatcher;
+use Core\Http\Negotiation;
+use Core\Http\Response;
+use Core\Http\Request;
+use Core\Http\Router;
+use Core\Interfaces\Application;
 
 class Context
 {
@@ -58,7 +58,6 @@ class Context
      * @var Negotiation $negotiation
      */
     protected Negotiation $negotiation;
-
 
     /**
      * @since 1.0.0

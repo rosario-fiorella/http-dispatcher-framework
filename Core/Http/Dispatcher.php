@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
-use \Core\Interfaces\Application;
-use \Core\Http\Interfaces\Dispatcher as DispatcherInterface;
-use \Core\Http\Response;
-use \Core\Http\Request;
+use Core\Interfaces\Application;
+use Core\Http\Interfaces\Dispatcher as DispatcherInterface;
+use Core\Http\Request;
+use Core\Http\Response;
 
 class Dispatcher implements DispatcherInterface
 {

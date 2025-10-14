@@ -52,16 +52,18 @@ class Request
     {
         $path = $this->getPath();
 
-        return strpos($path, '?') !== false ? strstr($path, '?', true) : $path;
+        return strpos($path, '?') !== false ? (strstr($path, '?', true) ?: '') : $path;
     }
 
     /**
      * @since 1.0.0
-     * @return array<string, mixed>
+     * @return array<int|string, mixed>
      */
     public function getQueryString(): array
     {
         $schema = parse_url($this->getUri(), PHP_URL_QUERY) ?: '';
+
+        $params = [];
 
         parse_str($schema, $params);
 

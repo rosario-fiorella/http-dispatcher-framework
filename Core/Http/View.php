@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
-use function \_;
-use \Core\Utils\ObjectSerializable;
-use \InvalidArgumentException;
+use function _;
+
+use Core\Utils\ObjectSerializable;
+use InvalidArgumentException;
 
 class View
 {
@@ -27,10 +28,8 @@ class View
     /**
      * @since 1.0.0
      * @param ModelAndView $modelAndView
-     * @param Request $request
-     * @param Response $response
      */
-    public function __construct(ModelAndView $modelAndView, Request $request, Response $response)
+    public function __construct(ModelAndView $modelAndView)
     {
         if ($modelAndView->hasView()) {
             $this->setPath($modelAndView->getViewName());
@@ -96,7 +95,7 @@ class View
     /**
      * @since 1.0.0
      * @access protected
-     * @param string $data
+     * @param string $template
      * @return void
      */
     protected function setVars(string $template = ''): void
@@ -116,7 +115,11 @@ class View
     {
         ob_start();
 
-        $output = $this->template->jsonSerialize();
+        $output = '';
+
+        if ($this->template) {
+            $output = $this->template->jsonSerialize();
+        }
 
         $this->setVars($output);
 

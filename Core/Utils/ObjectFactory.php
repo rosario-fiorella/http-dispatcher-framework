@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Core\Utils;
 
-use function \_;
-use \BadMethodCallException;
-use \ReflectionClass;
-use \ReflectionMethod;
-use \RuntimeException;
+use function _;
+
+use BadMethodCallException;
+use ReflectionClass;
+use ReflectionMethod;
+use RuntimeException;
 
 class ObjectFactory
 {
@@ -17,11 +18,11 @@ class ObjectFactory
      * @final
      * @static
      * @param string $namespace
-     * @param array $args
-     * @return object|null
+     * @param array<int, mixed> $args
+     * @return object
      * @throws RuntimeException
      */
-    final public static function getObjectInstance(string $namespace, array $args = []): ?object
+    final public static function getObjectInstance(string $namespace, array $args = []): object
     {
         $reflectionClass = new ReflectionClass($namespace);
 
@@ -51,7 +52,7 @@ class ObjectFactory
      * @static
      * @param object|string $class
      * @param string $method
-     * @param array $args
+     * @param array<int, mixed> $args
      * @return mixed
      * @throws BadMethodCallException
      */

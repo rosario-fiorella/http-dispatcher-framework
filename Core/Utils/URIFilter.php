@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Core\Utils;
 
-use function \_;
+use function _;
+
 use InvalidArgumentException;
+use UnexpectedValueException;
 
 class URIFilter
 {
@@ -34,10 +36,17 @@ class URIFilter
      * @since 1.0.0
      * @param string $regex
      * @return void
+     * @throws UnexpectedValueException
      */
     public function remove(string $regex): void
     {
-        $this->uri = preg_replace($regex, '', $this->uri);
+        $uri = preg_replace($regex, '', $this->uri);
+
+        if ($uri === null) {
+            throw new UnexpectedValueException(_('error.uri_filter.remove'));
+        }
+
+        $this->uri = $uri;
     }
 
     /**

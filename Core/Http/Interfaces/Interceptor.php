@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Core\Http\Interfaces;
 
-use \Core\Http\Controller;
-use \Core\Http\ModelAndView;
-use \Core\Http\Negotiation;
-use \Core\Http\Request;
-use \Core\Http\Response;
+use Core\Http\Controller;
+use Core\Http\ModelAndView;
+use Core\Http\Negotiation;
+use Core\Http\Request;
+use Core\Http\Response;
 
 interface Interceptor
 {

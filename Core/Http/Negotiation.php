@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
-use \Core\Http\Negotiation\Header;
-use \Core\Http\Negotiation\Body;
+use Core\Http\Negotiation\Header;
+use Core\Http\Negotiation\Body;
 
 class Negotiation
 {
@@ -28,8 +28,8 @@ class Negotiation
      */
     public function __construct()
     {
-        $this->header = new Header;
+        $this->header = new Header();
 
-        $this->body = new Body;
+        $this->body = new Body();
     }
 }

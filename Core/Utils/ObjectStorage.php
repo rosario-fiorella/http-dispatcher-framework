@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Core\Utils;
 
-use \Core\Boot\Configurer;
-use \Core\Boot\Loader;
-use \Core\Boot\Registry;
-use \Core\Interfaces\Application;
-use LogicException;
-use \UnexpectedValueException;
+use Core\Boot\Configurer;
+use Core\Boot\Loader;
+use Core\Boot\Registry;
+use Core\Interfaces\Application;
+use RuntimeException;
 
 class ObjectStorage
 {
@@ -37,7 +36,7 @@ class ObjectStorage
      * @since 1.0.0
      * @final
      * @param string $namespace
-     * @param array $args
+     * @param array<int, mixed> $args
      * @return object
      */
     final public static function getObjectInstance(string $namespace, array $args = []): object
@@ -55,16 +54,19 @@ class ObjectStorage
 
     /**
      * @since 1.0.0
-     * @param array $args
+     * @param array<int, mixed> $args
      * @return Application
-     * @throws UnexpectedValueException
-     * @throws LogicException
+     * @throws RuntimeException
      */
     public function instanceApplication(array $args = []): Application
     {
         $namespace = $this->registry->get('application');
 
         $application = $this->getObjectInstance($namespace, $args);
+
+        if (!$application instanceof Application) {
+            throw new RuntimeException(_('error.instance.application'));
+        }
 
         return $this->configurer->configureApplication($application);
     }

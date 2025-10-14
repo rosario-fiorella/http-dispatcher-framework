@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
-use function \_;
-use \UnexpectedValueException;
+use function _;
+
+use UnexpectedValueException;
 
 abstract class Controller
 {

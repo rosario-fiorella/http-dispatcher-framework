@@ -4,22 +4,20 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use \Core\Http\Controller;
-use \Core\Http\Interfaces\Dispatcher as DispatcherInterface;
-use \Core\Http\ModelAndView;
-use \Core\Http\Response;
-use \Core\Http\Request;
-use \Core\Http\View;
-use \RuntimeException;
+use Core\Http\Controller;
+use Core\Http\Interfaces\Dispatcher as DispatcherInterface;
+use Core\Http\ModelAndView;
+use Core\Http\Response;
+use Core\Http\Request;
+use Core\Http\View;
+use RuntimeException;
 
 class Generic extends Controller implements DispatcherInterface
 {
     protected ModelAndView $modelAndView;
     protected View $view;
 
-    public function init(): void
-    {
-    }
+    public function init(): void {}
 
     protected function doDelete(Request $request, Response $response): ModelAndView
     {
@@ -28,7 +26,9 @@ class Generic extends Controller implements DispatcherInterface
 
     protected function doGet(Request $request, Response $response): ModelAndView
     {
-        return new ModelAndView('/Views/Generic', json_encode(['content' => 'Hello World!']));
+        $response->setHeader('Content-Security-Policy', "script-src 'self' https://cdnjs.cloudflare.com 'nonce-123456' 'unsafe-eval';");
+
+        return new ModelAndView('/Views/Generic', json_encode(['content' => 'Hello World!']) ?: '');
     }
 
     protected function doHead(Request $request, Response $response): ModelAndView
@@ -60,19 +60,10 @@ class Generic extends Controller implements DispatcherInterface
     {
         $this->modelAndView = $this->doHandle($request, $response);
 
-        $this->view = new View($this->modelAndView, $request, $response);
+        $this->view = new View($this->modelAndView);
 
-        $output = $this->render();
-
-        $response->setBody($output);
+        $response->setBody($this->view->render());
     }
 
-    public function render(): string
-    {
-        return $this->view->render();
-    }
-
-    public function destroy(): void
-    {
-    }
+    public function destroy(): void {}
 }

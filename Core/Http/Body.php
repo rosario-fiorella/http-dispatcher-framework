@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
-use \Core\Http\Interfaces\Http;
+use Core\Http\Interfaces\Http;
 
 class Body implements Http
 {

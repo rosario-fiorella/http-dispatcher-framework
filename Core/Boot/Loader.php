@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Boot;
 
-use \ErrorException;
+use ErrorException;
 
 class Loader
 {
@@ -29,11 +29,12 @@ class Loader
              * @param string $error
              * @param string $file
              * @param int $line
+             * @return bool
              * @throws ErrorException
              */
-            function (int $level, string $error, string $file, int $line): void {
-                if (0 === error_reporting()) {
-                    return;
+            function (int $level, string $error, string $file, int $line): bool {
+                if (!(error_reporting() & $level)) {
+                    return false;
                 }
 
                 throw new ErrorException($error, error_reporting(), $level, $file, $line);

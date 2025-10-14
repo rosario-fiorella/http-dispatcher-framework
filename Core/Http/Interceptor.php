@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
-use \Core\Http\Interfaces\Interceptor as InterceptorInterface;
-use \Core\Http\Negotiation;
-use \Core\Utils\ObjectFactory;
-use \SplObjectStorage;
+use Core\Http\Interfaces\Interceptor as InterceptorInterface;
+use Core\Http\Negotiation;
+use Core\Utils\ObjectFactory;
+use SplObjectStorage;
 
 class Interceptor
 {
     /**
      * @since 1.0.0
      * @access protected
-     * @var SplObjectStorage $interceptor
+     * @var SplObjectStorage<InterceptorInterface, mixed|null> $interceptor
      */
     protected SplObjectStorage $interceptor;
 
@@ -31,7 +31,7 @@ class Interceptor
      */
     public function __construct(Negotiation $negotiation)
     {
-        $this->interceptor = new SplObjectStorage;
+        $this->interceptor = new SplObjectStorage();
 
         $this->negotiation = $negotiation;
     }

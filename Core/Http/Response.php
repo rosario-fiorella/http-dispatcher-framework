@@ -33,8 +33,8 @@ class Response
     public function __construct()
     {
         $this->status = Status::from(200);
-        $this->header = new Header;
-        $this->body = new Body;
+        $this->header = new Header();
+        $this->body = new Body();
     }
 
     /**

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Http;
 
-use \JsonException;
+use JsonException;
+use stdClass;
 
 class ModelAndView
 {
@@ -42,7 +43,9 @@ class ModelAndView
             throw new JsonException(json_last_error_msg(), json_last_error());
         }
 
-        $this->setModel($obj);
+        if ($obj instanceof stdClass) {
+            $this->setModel($obj);
+        }
     }
 
     /**

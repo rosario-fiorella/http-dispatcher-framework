@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Interfaces;
 
-use \Core\Http\Response;
-use \Core\Http\Request;
+use Core\Http\Response;
+use Core\Http\Request;
 
 interface Application
 {

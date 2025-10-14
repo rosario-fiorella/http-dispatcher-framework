@@ -2,15 +2,16 @@
 
 namespace App\Proxy;
 
-use \App\Config\Router;
-use \App\Modules\Test\Controllers\Index as TestController;
-use \Core\Context;
-use \Core\Http\ModelAndView;
-use \Core\Http\Request;
-use \Core\Http\Response;
-use \Core\Http\View;
-use \Core\Interfaces\Application as ApplicationInterface;
-use \Core\Utils\ObjectFactory;
+use App\Config\Router;
+use App\Modules\Test\Controllers\Index as TestController;
+use Core\Context;
+use Core\Http\Controller;
+use Core\Http\ModelAndView;
+use Core\Http\Request;
+use Core\Http\Response;
+use Core\Http\View;
+use Core\Interfaces\Application as ApplicationInterface;
+use Core\Utils\ObjectFactory;
 
 class Application implements ApplicationInterface
 {
@@ -25,12 +26,12 @@ class Application implements ApplicationInterface
     {
         $this->context = $context;
 
-        $this->router = new Router;
+        $this->router = new Router();
     }
 
     public function init(): void
     {
-        $this->router->addHandler('/(.+)/', TestController::class);
+        $this->router->addHandler('/(.+)?/', TestController::class);
     }
 
     public function preHandle(Request $request, Response $response): void
@@ -42,16 +43,20 @@ class Application implements ApplicationInterface
 
     public function doHandle(Request $request, Response $response): void
     {
-        $this->controllerInstance = ObjectFactory::getObjectInstance($this->controllerName);
+        $this->controllerInstance = ObjectFactory::getObjectInstance($this->controllerName ?: '');
 
-        $this->modelAndView = ObjectFactory::callObjectMethod($this->controllerInstance, __FUNCTION__, [$request, $response]);
+        if (is_object($this->controllerInstance)) {
+            $modelAndView = ObjectFactory::callObjectMethod($this->controllerInstance, __FUNCTION__, [$request, $response]);
+            $this->modelAndView = $modelAndView instanceof ModelAndView ? $modelAndView : null;
+        }
     }
 
     public function postHandle(Request $request, Response $response): void
     {
-        $this->context->getInterceptor()->postHandle($request, $response, $this->controllerInstance, $this->modelAndView);
-
-        $this->view = new View($this->modelAndView, $request, $response);
+        if ($this->modelAndView instanceof ModelAndView && $this->controllerInstance instanceof Controller) {
+            $this->context->getInterceptor()->postHandle($request, $response, $this->controllerInstance, $this->modelAndView);
+            $this->view = new View($this->modelAndView);
+        }
 
         $output = $this->render();
 
@@ -60,10 +65,12 @@ class Application implements ApplicationInterface
 
     public function render(): string
     {
-        return $this->view->render();
+        if ($this->view) {
+            return $this->view->render();
+        }
+
+        return '';
     }
 
-    public function destroy(): void
-    {
-    }
+    public function destroy(): void {}
 }

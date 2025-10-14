@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Core\Boot;
 
-use \Core\Context;
-use \Core\Http\Request;
-use \Core\Http\Response;
+use Core\Context;
+use Core\Http\Request;
+use Core\Http\Response;
 
 class LifeCycle
 {
@@ -45,8 +45,8 @@ class LifeCycle
      */
     protected function loader(): void
     {
-        $this->configurer = new Configurer;
-        $this->loader = new Loader;
+        $this->configurer = new Configurer();
+        $this->loader = new Loader();
     }
 
     /**
@@ -56,7 +56,7 @@ class LifeCycle
      */
     protected function registry(): void
     {
-        $this->registry = new Registry;
+        $this->registry = new Registry();
     }
 
     /**
