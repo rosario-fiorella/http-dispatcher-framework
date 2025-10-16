@@ -25,7 +25,7 @@ class URIFilter
      */
     public function __construct(string $uri)
     {
-        if (filter_var($uri, FILTER_VALIDATE_URL) && !preg_match('/[^\w.-]/', $uri)) {
+        if (str_starts_with($uri, 'http') && !filter_var($uri, FILTER_VALIDATE_URL)) {
             throw new InvalidArgumentException(_('error.validation.format.notUri'));
         }
 

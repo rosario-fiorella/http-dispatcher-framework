@@ -17,7 +17,9 @@ class User extends Controller implements DispatcherInterface
     protected ModelAndView $modelAndView;
     protected View $view;
 
-    public function init(): void {}
+    public function init(): void
+    {
+    }
 
     protected function doDelete(Request $request, Response $response): ModelAndView
     {
@@ -73,5 +75,7 @@ class User extends Controller implements DispatcherInterface
         $response->setBody($this->view->render());
     }
 
-    public function destroy(): void {}
+    public function destroy(): void
+    {
+    }
 }

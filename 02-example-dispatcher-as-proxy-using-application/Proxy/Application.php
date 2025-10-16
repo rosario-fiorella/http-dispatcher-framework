@@ -72,5 +72,7 @@ class Application implements ApplicationInterface
         return '';
     }
 
-    public function destroy(): void {}
+    public function destroy(): void
+    {
+    }
 }

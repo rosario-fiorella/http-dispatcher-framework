@@ -17,7 +17,7 @@ class ObjectStorage
      * @access protected
      * @var array<string, object> $cache
      */
-    protected static $cache = [];
+    protected static array $cache = [];
 
     /**
      * @since 1.0.0
@@ -42,12 +42,12 @@ class ObjectStorage
     final public static function getObjectInstance(string $namespace, array $args = []): object
     {
         if (array_key_exists($namespace, static::$cache)) {
-            return (static::$cache)[$namespace];
+            return static::$cache[$namespace];
         }
 
         $instance = ObjectFactory::getObjectInstance($namespace, $args);
 
-        (static::$cache)[$namespace] = $instance;
+        static::$cache[$namespace] = $instance;
 
         return $instance;
     }
@@ -61,6 +61,10 @@ class ObjectStorage
     public function instanceApplication(array $args = []): Application
     {
         $namespace = $this->registry->get('application');
+
+        if (!is_string($namespace) || !class_exists($namespace)) {
+            throw new RuntimeException(_('error.instance.application.namespace'));
+        }
 
         $application = $this->getObjectInstance($namespace, $args);
 

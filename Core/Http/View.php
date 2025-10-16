@@ -8,6 +8,7 @@ use function _;
 
 use Core\Utils\ObjectSerializable;
 use InvalidArgumentException;
+use RuntimeException;
 
 class View
 {
@@ -66,21 +67,22 @@ class View
      * @param string $filename
      * @return void
      * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     protected function setPath(string $filename): void
     {
-        if (!$filename) {
-            return;
+        if (empty($filename)) {
+            throw new InvalidArgumentException(_('error.path.notFound'));
         }
 
-        $path = sprintf('%s%s.php', getcwd(), $filename);
+        $baseDir = getcwd() . DIRECTORY_SEPARATOR;
+        $realPath = realpath($baseDir . $filename . '.php');
 
-        if (file_exists($path)) {
-            $this->filename = $path;
-            return;
+        if ($realPath === false || strncmp($realPath, $baseDir, strlen($baseDir)) !== 0) {
+            throw new RuntimeException(_('error.path.notFound'));
         }
 
-        throw new InvalidArgumentException(_('error.path.notFound'));
+        $this->filename = $realPath;
     }
 
     /**

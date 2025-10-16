@@ -76,6 +76,10 @@ class Request
      */
     public function getHeaders(): array
     {
+        if (!function_exists('apache_request_headers')) {
+            return [];
+        }
+
         return apache_request_headers() ?: [];
     }
 
@@ -86,8 +90,10 @@ class Request
      */
     public function getHeader(string $key): ?string
     {
-        if (array_key_exists($key, $this->getHeaders())) {
-            return $this->getHeaders()[$key];
+        $headers = $this->getHeaders();
+
+        if (array_key_exists($key, $headers)) {
+            return $headers[$key];
         }
 
         return array_key_exists($key, $_SERVER) ? $_SERVER[$key] : null;

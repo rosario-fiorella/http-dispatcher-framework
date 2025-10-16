@@ -17,7 +17,7 @@ trait StaticRegistryTrait
      * @access protected
      * @var array<string, string> $map
      */
-    protected static $map = [];
+    protected static array $map = [];
 
     /**
      * @since 1.0.0
@@ -28,7 +28,7 @@ trait StaticRegistryTrait
     public function get(string $key): string
     {
         if ($this->isset($key)) {
-            return (static::$map)[$key];
+            return static::$map[$key];
         }
 
         throw new InvalidArgumentException(_('error.array.key.notFound'));

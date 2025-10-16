@@ -8,7 +8,7 @@ use function _;
 
 use Core\Http\Interfaces\Dispatcher;
 use Core\Utils\URIFilter;
-use UnexpectedValueException;
+use RuntimeException;
 
 class Router
 {
@@ -17,7 +17,7 @@ class Router
      * @access protected
      * @var array<string, Dispatcher> $map
      */
-    protected $map = [];
+    protected array $map = [];
 
     /**
      * @param string $path
@@ -33,7 +33,7 @@ class Router
      * @since 1.0.0
      * @param Request $request
      * @return Dispatcher
-     * @throws UnexpectedValueException
+     * @throws RuntimeException
      */
     public function getDispatcher(Request $request): Dispatcher
     {
@@ -46,6 +46,6 @@ class Router
             }
         }
 
-        throw new UnexpectedValueException(_('error.regex.matching'));
+        throw new RuntimeException(_('error.regex.matching'));
     }
 }

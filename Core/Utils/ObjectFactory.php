@@ -55,6 +55,7 @@ class ObjectFactory
      * @param array<int, mixed> $args
      * @return mixed
      * @throws BadMethodCallException
+     * @throws RuntimeException
      */
     final public static function callObjectMethod(object|string $class, string $method, array $args = []): mixed
     {
@@ -73,12 +74,15 @@ class ObjectFactory
             return call_user_func_array([$class, $method], $args);
         }
 
+        $instance = null;
         if (is_string($class)) {
             $instance = self::getObjectInstance($class);
+        } elseif (is_object($class)) {
+            $instance = $class;
         }
 
-        if (is_object($class)) {
-            $instance = $class;
+        if (!is_object($instance)) {
+            throw new RuntimeException(_('error.object.instance.notCreated'));
         }
 
         return call_user_func_array([$instance, $method], $args);

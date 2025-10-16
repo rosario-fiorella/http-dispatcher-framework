@@ -13,7 +13,9 @@ use Core\Http\Response;
 
 class Generic implements InterceptorInterface
 {
-    public function preHandle(Request $request, Response $response, string $handler, Negotiation $negotiation): void {}
+    public function preHandle(Request $request, Response $response, string $handler, Negotiation $negotiation): void
+    {
+    }
 
     public function postHandle(Request $request, Response $response, Controller $handler, ModelAndView $modelAndView, Negotiation $negotiation): void
     {
