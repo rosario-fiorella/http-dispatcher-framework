@@ -251,15 +251,23 @@ class Context
         }
 
         ob_implicit_flush(true);
-        ob_clean();
+        if (ob_get_length() !== false) {
+            ob_clean();
+        }
 
         $response->send();
 
-        ob_flush();
+        if (ob_get_level() > 0) {
+            ob_flush();
+        }
 
         if (!in_array('ob_gzhandler', ob_list_handlers())) {
-            ob_end_flush();
-            ob_end_clean();
+            if (ob_get_level() > 0) {
+                ob_end_flush();
+            }
+            if (ob_get_level() > 0) {
+                ob_end_clean();
+            }
         }
     }
 }
