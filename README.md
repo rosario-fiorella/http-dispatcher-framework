@@ -38,4 +38,5 @@ This http-based framework implements the [Dispatcher pattern (more info from Ora
 
 ---
 
-**For questions or unclear conventions, review the README or example directories.**
+### Dispatcher lifecycle management 
+![workflow](https://github.com/rosario-fiorella/http-dispatcher-framework/assets/41728059/8b72715c-5bc6-41ed-b7c8-861bb2210021)
